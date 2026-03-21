@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>王冠宁博士 | 肿瘤免疫学与转化研究</title>
+  <style>
+    :root {
+      --bg: #0b1020;
+      --panel: #121a30;
+      --soft: #1a2442;
+      --text: #eef2ff;
+      --muted: #b7c2e0;
+      --accent: #74c0fc;
+      --accent2: #91f2c3;
+      --line: rgba(255,255,255,0.08);
+      --shadow: 0 20px 60px rgba(0,0,0,0.35);
+      --max: 1120px;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", Inter, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(116,192,252,0.18), transparent 28%),
+        radial-gradient(circle at top right, rgba(145,242,195,0.12), transparent 22%),
+        linear-gradient(180deg, #09101d 0%, #0b1020 100%);
+      line-height: 1.6;
+    }
+    a { color: var(--accent); text-decoration: none; transition: 0.3s; }
+    a:hover { color: var(--accent2); text-decoration: none; }
+    .container { width: min(calc(100% - 2rem), var(--max)); margin: 0 auto; }
+    .nav {
+      position: sticky; top: 0; z-index: 20;
+      backdrop-filter: blur(16px);
+      background: rgba(9, 16, 29, 0.72);
+      border-bottom: 1px solid var(--line);
+    }
+    .nav-inner {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1rem 0;
+    }
+    .brand { font-weight: 800; letter-spacing: 0.05em; font-size: 1.2rem; }
+    .nav-links { display: flex; gap: 1.2rem; flex-wrap: wrap; }
+    .nav-links a { color: var(--muted); font-size: 0.9rem; }
+    .nav-links a:hover { color: var(--text); }
+    
+    .hero {
+      padding: 5rem 0 3rem;
+      display: grid; grid-template-columns: 1.6fr 1fr; gap: 2.5rem; align-items: center;
+    }
+    .eyebrow {
+      display: inline-flex; gap: 0.5rem; align-items: center;
+      padding: 0.45rem 0.8rem; border-radius: 999px;
+      background: rgba(116,192,252,0.1); border: 1px solid rgba(116,192,252,0.25);
+      color: var(--accent); font-size: 0.9rem; margin-bottom: 1rem;
+    }
+    h1 { font-size: clamp(2rem, 5vw, 3.5rem); line-height: 1.2; margin: 0 0 1.5rem; }
+    .lead { font-size: 1.1rem; color: var(--muted); margin-bottom: 2rem; text-align: justify; }
+    
+    .hero-card {
+      background: linear-gradient(180deg, rgba(18,26,48,0.95), rgba(12,18,34,0.92));
+      border: 1px solid var(--line);
+      border-radius: 28px; padding: 1.5rem;
+      box-shadow: var(--shadow);
+    }
+    .metric-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1.5rem;
+    }
+    .metric {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--line);
+      border-radius: 20px; padding: 1.2rem;
+    }
+    .metric strong { display: block; font-size: 1.4rem; color: var(--accent2); }
+    .metric span { font-size: 0.85rem; color: var(--muted); }
+
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center;
+      padding: 0.8rem 1.5rem; border-radius: 12px; font-weight: 600;
+      transition: 0.3s; cursor: pointer;
+    }
+    .btn-primary { background: var(--accent); color: #07101f; border: none; }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(116,192,252,0.3); }
+    
+    section { padding: 3rem 0; border-bottom: 1px solid var(--line); }
+    .section-title { font-size: 1.8rem; margin-bottom: 0.5rem; color: var(--text); }
+    .section-sub { color: var(--muted); margin-bottom: 2rem; font-size: 1rem; }
+    
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+    .card {
+      background: rgba(18,26,48,0.6);
+      border: 1px solid var(--line);
+      border-radius: 24px; padding: 1.5rem;
+      height: 100%;
+    }
+    .card h3 { margin-top: 0; color: var(--accent); font-size: 1.2rem; margin-bottom: 1rem; }
+    
+    .item { padding: 1.2rem 0; border-bottom: 1px solid var(--line); }
+    .item:last-child { border-bottom: none; }
+    .item-top { display: flex; justify-content: space-between; gap: 1rem; margin-bottom: 0.5rem; }
+    .item-title { font-weight: 700; color: var(--text); }
+    .time { color: var(--accent); font-size: 0.9rem; font-family: monospace; }
+    .desc { color: var(--muted); font-size: 0.95rem; }
+
+    .tag-container { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+    .tag {
+      padding: 0.4rem 0.8rem; border-radius: 8px;
+      background: rgba(116,192,252,0.1); border: 1px solid rgba(116,192,252,0.15);
+      font-size: 0.85rem; color: var(--accent);
+    }
+    
+    .pub-card { 
+      background: rgba(255,255,255,0.02); 
+      border-radius: 15px; padding: 1rem; 
+      margin-bottom: 1rem; border-left: 4px solid var(--accent);
+    }
+    .pub-meta { font-size: 0.85rem; color: var(--accent2); margin-top: 0.5rem; }
+
+    footer { padding: 4rem 0; text-align: center; color: var(--muted); font-size: 0.9rem; }
+
+    @media (max-width: 850px) {
+      .hero, .grid-2 { grid-template-columns: 1fr; }
+      .brand { margin-bottom: 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="nav">
+    <div class="container nav-inner">
+      <div class="brand">王冠宁博士 Guanning Wang</div>
+      <div class="nav-links">
+        <a href="#about">研究方向</a>
+        <a href="#education">教育背景</a>
+        <a href="#experience">科研经历</a>
+        <a href="#publications">学术成果</a>
+        <a href="#awards">荣誉专利</a>
+        <a href="#contact">联系方式</a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="container hero">
+    <div>
+      <div class="eyebrow">肿瘤免疫学 • 转化医学 • T细胞疗法</div>
+      <h1>解析并重构抗肿瘤 CD8<sup>+</sup> T 细胞状态</h1>
+      <p class="lead">
+        我是王冠宁博士，目前在宾夕法尼亚大学（Penn Medicine）从事博士后研究。我的研究致力于揭示人类抗肿瘤 CD8<sup>+</sup> T 细胞应答的关键机制，并以此提升黑色素瘤及实体瘤的免疫治疗效果。通过整合多组学技术与 CRISPR 类器官平台，我在“血液-淋巴结-肿瘤”多层面解析 T 细胞的功能、迁移轨迹与耐受机制。
+      </p>
+      <div style="display: flex; gap: 1rem;">
+        <a class="btn btn-primary" href="#publications">查看论文发表</a>
+        <a class="btn" style="border: 1px solid var(--line);" href="mailto:guanningwang1218@yeah.net">发送邮件</a>
+      </div>
+    </div>
+    
+    <div class="hero-card">
+      <h3 style="margin-top:0; color: var(--accent2);">当前职位</h3>
+      <div style="font-weight:700;">博士后研究员 (Postdoc)</div>
+      <div class="desc">宾夕法尼亚大学 | Penn Medicine</div>
+      <div class="desc">导师：Dr. Alexander C. Huang & Dr. Mitchell C. Tara</div>
+      
+      <div class="metric-grid">
+        <div class="metric">
+          <strong>213.4</strong>
+          <span>总影响因子 (IF)</span>
+        </div>
+        <div class="metric">
+          <strong>103.5</strong>
+          <span>一作影响因子</span>
+        </div>
+        <div class="metric">
+          <strong>4项</strong>
+          <span>临床试验科研负责人</span>
+        </div>
+        <div class="metric">
+          <strong>100万美元</strong>
+          <span>CRI 基金资助</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    
+    <section id="about">
+      <h2 class="section-title">研究方向</h2>
+      <p class="section-sub">基础科研与临床转化双驱，解析免疫治疗应答规律</p>
+      <div class="grid-2">
+        <div class="card">
+          <h3>基础科研</h3>
+          <p class="desc">系统整合组合四聚体、多组学（转录组、表观组、空间组学）、TCR 克隆追踪及 CRISPR 类器官平台，解析抗原特异性 T 细胞的功能状态、迁移轨迹与耐受机制。</p>
+        </div>
+        <div class="card">
+          <h3>临床转化</h3>
+          <p class="desc">深度参与多项 PD-1 新辅助治疗、CD8 PET/CT 成像及 TIL 细胞疗法临床试验。构建“血液—淋巴结—肿瘤” T 细胞动态模型，为精准分型提供框架。</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="education">
+      <h2 class="section-title">教育背景</h2>
+      <div class="card">
+        <div class="item">
+          <div class="item-top">
+            <div class="item-title">医科学博士 | 京都大学 (Kyoto University)</div>
+            <div class="time">2019.04 – 2022.01</div>
+          </div>
+          <div class="desc">导师：Tasuku Honjo 本庶佑（2018年诺贝尔奖获得者）</div>
+          <div class="desc">课题：PD-1 免疫治疗与免疫调控</div>
+        </div>
+        <div class="item">
+          <div class="item-top">
+            <div class="item-title">荣誉理学学士 | 多伦多大学 (University of Toronto)</div>
+            <div class="time">2011.09 – 2015.05</div>
+          </div>
+          <div class="desc">专业：免疫学 (Immunology Specialist)</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="experience">
+      <h2 class="section-title">科研与临床经历</h2>
+      <div class="card">
+        <div class="item">
+          <div class="item-top">
+            <div class="item-title">博士后 | 宾夕法尼亚大学</div>
+            <div class="time">2022.05 – 至今</div>
+          </div>
+          <div class="desc">担任 4 项临床试验科研负责人：</div>
+          <ul class="desc" style="margin-top:0.5rem;">
+            <li>NCT04013854: 黑色素瘤 PD-1 新辅助治疗（科研负责人）</li>
+            <li>CD8 PET/CT 成像增强 TIL 疗效研究（科研负责人）</li>
+            <li>NCT05733715: 肾细胞癌 PD-1 +/- 乐伐替尼研究（科研负责人）</li>
+            <li>NCT05496036: 默克尔细胞癌 PD-1 阻断研究（科研负责人）</li>
+          </ul>
+        </div>
+        <div class="item">
+          <div class="item-top">
+            <div class="item-title">研究助理 | 清华大学</div>
+            <div class="time">2018.09 – 2019.04</div>
+          </div>
+          <div class="desc">导师：鲁白。研究 PD-1/PD-L1 轴在神经炎症及退行性疾病（AD/PD）中的作用。</div>
+        </div>
+        <div class="item">
+          <div class="item-top">
+            <div class="item-title">暑期实习 | 诺华中国生物医学研究院 (CNIBR)</div>
+            <div class="time">2016.10 – 2017.05</div>
+          </div>
+          <div class="desc">研究 BRAF/MEK 抑制与 PD-1 阻断在抗肿瘤免疫中的耐药机制。</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills">
+      <h2 class="section-title">实验技术与技能</h2>
+      <div class="grid-2">
+        <div class="card">
+          <h3>免疫学与高通量技术</h3>
+          <div class="tag-container">
+            <span class="tag">高参数流式细胞术</span><span class="tag">组合四聚体染色</span>
+            <span class="tag">单细胞 RNA/TCR 测序</span><span class="tag">TIL 制备与表型分析</span>
+            <span class="tag">多重免疫染色</span><span class="tag">数字病理分析</span>
+            <span class="tag">CRISPR 类器官培养</span>
+          </div>
+        </div>
+        <div class="card">
+          <h3>计算分析与软件</h3>
+          <div class="tag-container">
+            <span class="tag">R</span><span class="tag">Python</span>
+            <span class="tag">免疫受体库分析</span><span class="tag">多组学数据整合</span>
+            <span class="tag">Adobe Illustrator/PS</span><span class="tag">ImageJ/FIJI</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="publications">
+      <h2 class="section-title">发表文章</h2>
+      <div class="grid-2">
+        <div>
+          <h3>第一作者发表</h3>
+          <div class="pub-card">
+            <strong>Wang, G.*</strong> et al. Antigen-Specific Profiling Identifies T-bet-Expressing Melanoma-Specific CD8 T Cells...
+            <div class="pub-meta">Cancer Cell, 2026 (IF=44.5)</div>
+          </div>
+          <div class="pub-card">
+            <strong>Wang, G.*</strong> et al. Neoadjuvant anti-PD-1 therapy reveals the abundance of tumor-specific intermediate exhausted T cells...
+            <div class="pub-meta">JITC, 2024 (IF=10.6)</div>
+          </div>
+          <div class="pub-card">
+            Yoon, D.*, <strong>Wang, G.*</strong> et al. Antigen-specific profiling for neoadjuvant anti-PD-1 therapy in melanoma.
+            <div class="pub-meta">Journal of Clinical Oncology, 2024 (IF=42.1)</div>
+          </div>
+          
+          <h3 style="margin-top: 2rem;">共同作者发表</h3>
+          <div class="pub-card" style="border-left-color: var(--accent2);">
+            Miura J.*, Salama, A.K.S., <strong>Wang, G.</strong>, et al. Randomization to adjuvant nivolumab or ipilimumab...
+            <div class="pub-meta">Annals of Oncology, 2025 (IF=65.4)</div>
+          </div>
+          <div class="pub-card" style="border-left-color: var(--accent2);">
+            Wang, K.*, Coutifaris, P., Brocks, D., <strong>Wang, G.</strong>, et al. Combination anti-PD-1 and anti-CTLA-4 therapy...
+            <div class="pub-meta">Cancer Cell, 2024 (IF=44.5)</div>
+          </div>
+        </div>
+        <div>
+          <h3>近期投稿 (In Review)</h3>
+          <div class="pub-card" style="border-left-color: var(--accent2);">
+            <strong>Wang, M.*, Wang, G.*</strong> et al. Anti-PD-1 efficacy is associated with migratory chronic effectors...
+            <div class="pub-meta">Submitted to <strong>Cell</strong></div>
+          </div>
+          <div class="pub-card" style="border-left-color: var(--accent2);">
+            Delclaux, I.*, ... <strong>Wang, G.</strong> et al. Lymphatic egress recycles tumor-experienced effector CD8 T cells...
+            <div class="pub-meta">Submitted to <strong>Cell</strong></div>
+          </div>
+          <div class="pub-card" style="border-left-color: var(--accent2);">
+            Miura, J.*, ... <strong>Wang, G.</strong> et al. Randomization to Adjuvant Nivolumab or Ipilimumab + Nivolumab...
+            <div class="pub-meta">Submitted to <strong>NEJM</strong></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="awards">
+      <h2 class="section-title">荣誉、基金与专利</h2>
+      <div class="card">
+        <div class="item">
+          <div class="item-top">
+            <div class="item-title">CRI IGNITE 基金 (100万美元, 5年期)</div>
+            <div class="time">2026</div>
+          </div>
+          <div class="desc">个人独立科研启动基金</div>
+        </div>
+        <div class="item">
+          <div class="item-top">
+            <div class="item-title">美国青年科学家奖 (Young Investigator Award, SITC)</div>
+            <div class="time">2025</div>
+          </div>
+          <div class="desc">全美每年仅 4 位获奖者</div>
+        </div>
+        <div class="item">
+          <div class="item-top">
+            <div class="item-title">美国专利申请: 组合肽-MHC四聚体系统用于预测治疗应答</div>
+            <div class="time">2026</div>
+          </div>
+          <div class="desc">专利名: Combinatorial peptide–MHC tetramer systems and methods to predict pathologic response...</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <h2 class="section-title">联系方式</h2>
+      <div class="card">
+        <div class="grid-2">
+          <div>
+            <div class="desc"><strong>个人邮箱:</strong> <a href="mailto:guanningwang1218@yeah.net">guanningwang1218@yeah.net</a></div>
+            <div class="desc"><strong>学术邮箱:</strong> guanning.wang@pennmedicine.upenn.edu</div>
+            <div class="desc"><strong>联系电话:</strong> 267-206-0792 (US) / 13601068150 (CN)</div>
+          </div>
+          <div>
+            <div class="desc"><strong>办公地址:</strong> 4045 Baltimore Street, Philadelphia, PA</div>
+            <div class="desc"><strong>国内住址:</strong> 北京市朝阳区林萃路9号京师园</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>© 2026 王冠宁博士 (Dr. Guanning Wang). All Rights Reserved.</p>
+      <p style="font-size: 0.8rem; opacity: 0.6;">基于学术履历构建 · 2026年3月更新</p>
+    </div>
+  </footer>
+
+</body>
+</html>
